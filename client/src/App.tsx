@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router"
-import Login from "./pages/Auth/Login"
+import Login from "./pages/auth/Login"
 import AdminRoutes from "./routes/AdminRoutes";
 import ClientRoutes from "./routes/clientRoutes";
+import Register from "./pages/auth/Register";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           {/* LES ROUTES A LA RACINE */}
           <Route path="/" element={< Login />} />
+          <Route path="/register" element={ < Register/>} />
 
           {/* LES ROUTES POUR LES CLIENTS */}
           <Route path="/Home/*" element={ < ClientRoutes />} />

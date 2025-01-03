@@ -9,7 +9,13 @@ function DashboardClient() {
         <>
             <div className='flex items-center'> 
                 <div className='w-1/2'>
-                    <h1 className='text-xl md:text-3xl'>Dashbord</h1>
+                    {/* <h1 className='text-xl md:text-3xl'>Dashbord</h1> */}
+                    <input 
+                        type="search" 
+                        name="" 
+                        id="" 
+                        className='border w-1/2 focus:outline-none px-4 py-1 rounded-lg'
+                    />
                 </div>
 
                 <div className='w-1/2 flex justify-end'>
@@ -19,7 +25,7 @@ function DashboardClient() {
                         </div>
                         <div>
                             <img 
-                                src="./src/assets/Client/img/avatar.png" 
+                                src="./src/assets/images/client/avatar.png" 
                                 alt="Photo User" 
                                 className='h-12 w-12'
                             />
@@ -35,11 +41,14 @@ function DashboardClient() {
                 </div>
             </div>
             <hr />
-
-            <section className='grid md:grid-cols-GridDash1 gap-3 mt-5'>
+                <div className='py-2'>
+                    <h1 className='text-2xl'>Dashboard</h1>
+                </div>
+            <section className='grid md:grid-cols-GridDash1 gap-3 '>
                 <div>
+                    
                     <div className='gap-3 grid md:grid-cols-3'>
-                        <div className='bg-green-700 text-white px-4 py-2 rounded-xl'>
+                        <div className='bg-green-600/85 text-white px-4 py-2 rounded-xl'>
                             <div>
                                 <h1 className='text-lg font-semibold'>Montant Total</h1>
                             </div>
@@ -53,7 +62,7 @@ function DashboardClient() {
                             </div>
                         </div>
 
-                        <div className='bg-amber-500 text-white px-4  py-2 rounded-xl'>
+                        <div className='bg-amber-500/75 text-white px-4  py-2 rounded-xl'>
                             <div>
                                 <h1 className='text-lg font-semibold'>Montant Payer</h1>
                             </div>
@@ -67,7 +76,7 @@ function DashboardClient() {
                             </div>
                         </div>
 
-                        <div className='bg-gray-600 text-white px-4 py-2 rounded-xl'>
+                        <div className='bg-gray-600/75 text-white px-4 py-2 rounded-xl'>
                             <div>
                                 <h1 className='text-lg font-semibold'>Montant Restant</h1>
                             </div>

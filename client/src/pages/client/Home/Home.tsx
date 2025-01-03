@@ -1,7 +1,7 @@
 import { Outlet, Link, useLocation } from "react-router";
 
 // les iconnes 
-import { IoSchoolOutline } from "react-icons/io5";
+// import { IoSchoolOutline } from "react-icons/io5";
 import { RxDashboard } from "react-icons/rx";
 import { MdPayment } from "react-icons/md";
 import { MdManageHistory } from "react-icons/md";
@@ -12,7 +12,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 function HomeClient() {
     const Location = useLocation();
-    const IsActive = (pash) => (Location.pathname === pash ? "flex  items-center w-full text-xl py-2 mb-2 bg-green-600 text-white rounded-lg" : "");
+    const IsActive = (pash: string) => (Location.pathname === pash ? "flex  items-center w-full text-xl py-2 mb-2 text-green-500 rounded-lg" : "");
     
     return(
         <>
@@ -22,7 +22,7 @@ function HomeClient() {
                     <div className="px-5 py-5">
                         <div>
                             <div className="flex justify-center">
-                                <IoSchoolOutline size={35} className="text-green-600" />
+                                {/* <IoSchoolOutline size={35} className="text-green-600" /> */}
                             </div>
                             <h1 className="flex text-2xl md:justify-center md:text-4xl">UNILU</h1>
                         </div>
