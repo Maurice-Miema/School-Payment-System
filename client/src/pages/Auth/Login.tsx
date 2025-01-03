@@ -6,9 +6,11 @@ import { z } from "zod";
 
 
 function Login() {
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState<string | null>(null); // pour le message du server
+    const [isLoading, setIsLoading] = useState<boolean>(false); // pour le loading au niveau du btn
+    const navigate = useNavigate(); // pour la redirection
+
+    // le schema de données de user
     const userShema = z.object({
         code: z.string().min(1,),
         password: z.string().min(1,),
