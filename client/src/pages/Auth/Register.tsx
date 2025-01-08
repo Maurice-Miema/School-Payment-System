@@ -41,7 +41,7 @@ function Register() {
         setErrorMessage(null);
         console.log("data :", data);
         try {
-            const reponse = await fetch("http://localhost:300/register", {
+            const reponse = await fetch("http://localhost:3000/api/v1/user/inscription", {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"
@@ -50,9 +50,12 @@ function Register() {
             });
             const resultat = await reponse.json();
             if(reponse.ok){
-                navigate("/home")
+                const { token, user }: { token: string; user: { [key: string]: any } } = resultat;
+                localStorage.setItem("token", token); 
+                localStorage.setItem("user", JSON.stringify(user));
+                navigate("/Home");
             } else {
-                setErrorMessage(resultat.message || "Une erreur est survenue veuillez resaiyer");
+                setErrorMessage("Erreur BOOTCAM Veuillez ajouter la lettre P a la fin");
             }
         } catch (error) {
             setErrorMessage("Impossible de se connecter au serveur verifier votre connexion");

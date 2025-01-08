@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const jwt = require("jsonwebtoken");
 
-const Renewtoken = async (req, res) => {
+const Newtoken = async (req, res) => {
     const { token, iduser } = req.body;
 
     if (!token || !iduser) {
@@ -27,4 +27,4 @@ const Renewtoken = async (req, res) => {
     }
 };
 
-module.exports = Renewtoken;
+module.exports = Newtoken;

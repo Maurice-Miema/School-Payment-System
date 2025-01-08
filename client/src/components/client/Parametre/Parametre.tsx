@@ -1,9 +1,12 @@
-import React from 'react'
+import Navbar from "../navbar/Navbar"
 
 function Parametre() {
   return (
     <div>
-      <h>La Page de Parametre</h>
+      <div>
+        < Navbar />
+      </div>
+      <h1>La Page de Parametre</h1>
     </div>
   )
 }
