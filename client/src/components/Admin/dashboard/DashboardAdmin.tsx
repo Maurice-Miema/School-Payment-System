@@ -53,27 +53,7 @@ export default function DashbordAdmin() {
                 </div>
 
                 <div className='mt-2 text-xl md:mt-4'>
-                    <h1>Historique récent des paiements</h1>
-
-                    <div className='border rounded-md h-96 overflow-auto mt-4 px-4 py-2'>
-                        <div className='grid gap-2 md:grid-cols-4'>
-                            <div className='bg-black'>
-                                <h1>colone</h1>
-                            </div>
-
-                            <div className='bg-black'>
-                                <h1>colone</h1>
-                            </div>
-
-                            <div className='bg-black'>
-                                <h1>colone</h1>
-                            </div>
-
-                            <div className='bg-black'>
-                                <h1>colone</h1>
-                            </div>
-                        </div>
-                    </div>
+                    {/*  */}
                 </div>
             </div>
 

@@ -34,7 +34,7 @@ function Register() {
         formState: { errors }
     } = useForm<FormData>({
         resolver: zodResolver(userSchema)
-    });
+    });                    
     
     const onSubmit = async (data: FormData) => {
         setIsLoading(true);

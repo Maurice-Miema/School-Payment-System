@@ -1,4 +1,5 @@
 import Navbar from "../navbar/Navbar"
+import Listeleves from "./Listeleves"
 
 
 function GestionEtudiant() {
@@ -12,7 +13,7 @@ function GestionEtudiant() {
                 </div>
 
                 <div>
-                    
+                    < Listeleves />
                 </div>
             </div>
         </>
