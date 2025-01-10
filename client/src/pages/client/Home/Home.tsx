@@ -1,14 +1,11 @@
 import { Outlet, Link, useLocation } from "react-router";
 
 // les iconnes 
-// import { IoSchoolOutline } from "react-icons/io5";
 import { RxDashboard } from "react-icons/rx";
 import { MdPayment } from "react-icons/md";
 import { MdManageHistory } from "react-icons/md";
-import { IoNotificationsOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
-
-
+import Loginout from "../../../components/client/loginOut/Loginout";
 
 function HomeClient() {
     const Location = useLocation();
@@ -19,7 +16,7 @@ function HomeClient() {
             {/* le grid principal */}
             <section className="grid grid-cols-1 md:grid-cols-GridClient">
                 <section className="border border-r-2 h-screen md:overflow-auto overflow-auto bg-slate-50">
-                    <div className="px-5 py-5">
+                    <div className="px-5 py-5 h-[98vh]">
                         <div>
                             <div className="flex justify-center">
                                 {/* <IoSchoolOutline size={35} className="text-green-600" /> */}
@@ -54,17 +51,6 @@ function HomeClient() {
                             <li>
                                 <Link 
                                     type="button"
-                                    to="/Home/Notification"
-                                    className={`text-gray-600 py-2 mb-2 flex items-center w-full text-xl ${IsActive("/Home/Notification")}`}
-                                >
-                                    < IoNotificationsOutline size={25} className="mx-2"/>
-                                    Notifications
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link 
-                                    type="button"
                                     to="/Home/Historique"
                                     className={`text-gray-600 py-2 mb-2 flex items-center w-full text-xl ${IsActive("/Home/Historique")}`}
                                 >
@@ -86,6 +72,10 @@ function HomeClient() {
                             </li>
 
                         </ul>
+
+                        <div>
+                            < Loginout />
+                        </div>
                     </div>
                 </section>
 

@@ -6,10 +6,9 @@ const db = require("../../config/Database");
 dotenv.config();
 
 const ConnexionUser = async (req, res) => {
-    console.log("les données :", req, res);
-    const { nom, postnom, prenom, password } = req.body;
+    const { nom, postnom, password } = req.body;
 
-    if(!nom || !postnom || !prenom || !password){
+    if(!nom || !postnom || !password){
         return res.status({ message: "les connées requis"});
     }
 
@@ -18,8 +17,8 @@ const ConnexionUser = async (req, res) => {
         const [rows] = await db
         .promise()
         .query(
-            "SELECT * FROM utilisateurs WHERE nom = ? AND postnom = ? AND prenom = ?",
-            [nom, postnom, prenom,]
+            "SELECT * FROM utilisateurs WHERE nom = ? AND postnom = ? ",
+            [nom, postnom ]
         );
         if(rows.length === 0){
             return res.status(404).json({ message: "Utilisateur non trouver"});
@@ -45,10 +44,11 @@ const ConnexionUser = async (req, res) => {
                 nom: user.nom,
                 postnom: user.postnom,
                 prenom: user.prenom,
-                numerotel: user.numerotelephone ,
-                promotion: user.promotion
+                numerotel: user.numerotelephone,
+                promotion: user.promotion,
+                role: user.role
             }
-        })
+        });
     } catch (error) {
         console.error("Erreur lors de la connexion !", error.message);
         res.status(500).json({ message: "Erreur interne du serveur."});

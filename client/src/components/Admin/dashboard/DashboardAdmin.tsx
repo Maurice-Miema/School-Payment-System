@@ -1,37 +1,9 @@
-// les iconnes
-import { IoNotificationsOutline } from "react-icons/io5";
-import { HiOutlineChevronDown } from "react-icons/hi";
+import Navbar from "../navbar/Navbar";
 
 export default function DashbordAdmin() {
   return (
     <>
-        <div className='flex items-center'> 
-            <div className='w-1/2'>
-                <h1 className='text-xl md:text-3xl'>Dashbord</h1>
-            </div>
-
-            <div className='w-1/2 flex justify-end'>
-                <div className='flex items-center'>
-                    <div className='mx-2'>
-                        < IoNotificationsOutline size={20} />
-                    </div>
-                    <div>
-                        <img 
-                            src="./src/assets/Client/img/avatar.png" 
-                            alt="Photo User" 
-                            className='h-12 w-12'
-                        />
-                    </div>
-                    <div>
-                        <h1 className='hidden md:block'>Maurice Miema</h1>
-                        < HiOutlineChevronDown 
-                            size={20}
-                            className='md:hidden block' 
-                        />
-                    </div>
-                </div>
-            </div>
-        </div>
+        < Navbar />
         <hr />
 
         <section className='grid md:grid-cols-GridDash1 gap-3 mt-5'>
@@ -81,27 +53,7 @@ export default function DashbordAdmin() {
                 </div>
 
                 <div className='mt-2 text-xl md:mt-4'>
-                    <h1>Historique récent des paiements</h1>
-
-                    <div className='border rounded-md h-96 overflow-auto mt-4 px-4 py-2'>
-                        <div className='grid gap-2 md:grid-cols-4'>
-                            <div className='bg-black'>
-                                <h1>colone</h1>
-                            </div>
-
-                            <div className='bg-black'>
-                                <h1>colone</h1>
-                            </div>
-
-                            <div className='bg-black'>
-                                <h1>colone</h1>
-                            </div>
-
-                            <div className='bg-black'>
-                                <h1>colone</h1>
-                            </div>
-                        </div>
-                    </div>
+                    {/*  */}
                 </div>
             </div>
 

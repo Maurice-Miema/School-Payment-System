@@ -12,7 +12,8 @@ function Login() {
 
     // le schema de données de user
     const userShema = z.object({
-        code: z.string().min(1,),
+        nom: z.string().min(1,),
+        postnom: z.string().min(1),
         password: z.string().min(1,),
     });
 
@@ -29,7 +30,7 @@ function Login() {
         setIsLoading(true);
         setErrorMessage(null);
         try {
-            const reponse = await fetch("http://localhost:5000/api/login", {
+            const reponse = await fetch("http://localhost:3000/api/v1/user/connexion", {
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json"
@@ -38,9 +39,16 @@ function Login() {
             });
             const resultat = await reponse.json();
             if(reponse.ok){
-                navigate("/Home");
+                const { token, user }: { token: string; user: { role: string; [key: string]: any } } = resultat;
+                localStorage.setItem("token", token);
+                localStorage.setItem("user", JSON.stringify(user));
+                if(user.role === "eleve"){
+                    navigate("/Home");
+                } else{
+                    navigate("/Admin");
+                }
             } else{
-                setErrorMessage(resultat.message || "Code ou Password est incorrect");
+                setErrorMessage("Nom  ou Password est incorrect ");
             }
         } catch (error) {
             setErrorMessage("Impossible de se connecter au serveur verifier votre connexion");
@@ -61,17 +69,30 @@ function Login() {
                         <p className="text-red-500 text-center"> {errorMessage} </p> 
                     }
                     {/* item input */}
-                    <div className="mb-2">
-                        <label htmlFor="input-prenom" className="block text-sm font-medium mb-2 ">Prenom</label>
+                    <div className="mb-2 ">
+                        <label htmlFor="input-nom" className="block text-sm font-medium mb-2 ">Nom</label>
                         <input
-                            {...register("code", { required: "l'email"})} 
+                            {...register("nom", { required: "l'email"})} 
                             type="code" 
-                            id="input-prenom" 
-                            placeholder="Pre nom"
-                            className={`py-3 px-4 block w-full border rounded-lg text-sm   focus:outline-green-300 disabled:pointer-events-none ${errors.code ? "border-red-500 border-2 focus:outline-red-500" : "border-gray-300"}`}
+                            id="input-nom" 
+                            placeholder="Nom"
+                            className={`py-3 px-4 block w-full border rounded-lg text-sm   focus:outline-green-300 disabled:pointer-events-none ${errors.nom ? "border-red-500 border-2 focus:outline-red-500" : "border-gray-300"}`}
                         />
                     </div>
-                    { /* End item */} 
+                    { /* End item */}
+
+                    {/* item input */}
+                    <div className="mb-2 ">
+                        <label htmlFor="input-postnom" className="block text-sm font-medium mb-2 ">Postnom</label>
+                        <input
+                            {...register("postnom", { required: "l'email"})} 
+                            type="code" 
+                            id="input-postnom" 
+                            placeholder="Postnom"
+                            className={`py-3 px-4 block w-full border rounded-lg text-sm   focus:outline-green-300 disabled:pointer-events-none ${errors.postnom ? "border-red-500 border-2 focus:outline-red-500" : "border-gray-300"}`}
+                        />
+                    </div>
+                    { /* End item */}
 
                     {/* item input */}
                     <div className="mb-2">
