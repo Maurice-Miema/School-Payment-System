@@ -1,8 +1,8 @@
 
 
-function ListHistorique() {
+function HistoriqueRecent() {
     return (
-        <div className="overflow-auto">
+        <div className="overflow-auto mt-4">
             <div className=" inline-block align-middle">
                 <div className="overflow-auto scrollbar-none border rounded-lg h-[79vh]">
                     <div className="table border-collapse table-auto w-full divide-y divide-gray-200 ">
@@ -140,4 +140,4 @@ function ListHistorique() {
     )
 }
 
-export default ListHistorique;
+export default HistoriqueRecent;
