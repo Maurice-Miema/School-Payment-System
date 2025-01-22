@@ -11,6 +11,10 @@ function HomeClient() {
     const Location = useLocation();
     const IsActive = (pash: string) => (Location.pathname === pash ? "flex  items-center w-full text-xl py-2 mb-2 text-green-500 rounded-lg" : "");
     
+    const storedUser = localStorage.getItem("user"); 
+    const user = storedUser ? JSON.parse(storedUser) : null;
+    console.log("les infos de l'utilisatereur :", user)
+    
     return(
         <>
             {/* le grid principal */}

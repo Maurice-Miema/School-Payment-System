@@ -19,7 +19,9 @@ function Historique() {
           </div>
           
           {/* liste de frais */}
-          < ListHistorique />
+          <div className="mt-4">
+            < ListHistorique />
+          </div>
       </section>
         </>
   )

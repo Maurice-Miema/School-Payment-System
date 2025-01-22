@@ -1,13 +1,29 @@
-import z from "zod";
 import { useForm } from 'react-hook-form';
+import 'react-phone-input-2/lib/style.css'
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useState } from 'react';
 
-function AddFrais() {
+interface Addfrais{
+    onClose: () => void;
+}
+
+function AddFrais({onClose}: Addfrais) {
+    const [isloading, setIsLoading] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState< string | null>(null);
+
     const Schemafrais = z.object({
-        titre: z.string().min(2),
-        montant: z.number().min(2),
-        date_debut: z.date(),
-        date_fin: z.date(),
+        titre: z
+            .string()
+            .min(1, { message: "Le titre est requis" })
+            .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/, { message: "Le titre ne doit contenir que des lettres" }),
+        montant: z
+            .string()
+            .regex(/^\d+$/, "Le montant doit être un nombre.")
+            .transform(Number)
+            .refine((val) => val > 0, "Le montant doit être supérieur à 0."),
+        date_debut: z.string().refine((val) => !isNaN(Date.parse(val)), "La date de début est invalide."),
+        date_fin: z.string().refine((val) => !isNaN(Date.parse(val)), "La date de fin est invalide."),
         promotion: z.enum(["7 ieme", "8 ieme", "3 ieme", "4 ieme", "5 ieme", "6 ieme"]),
     })
 
@@ -22,16 +38,42 @@ function AddFrais() {
     });
 
     const onSubmit = async (data: FromData) => {
+        setIsLoading(true);
+        setErrorMessage(null);
         console.log("data :", data);
+
+        try {
+            const reponse = await fetch("http://localhost:3000/api/v2/datafrias/datafrais", {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+                body: JSON.stringify(data),
+            })
+            const resultat = await reponse.json();
+            if(reponse.ok){
+                alert("bonjour");
+            }else(
+                setErrorMessage("Erreur d'envois Veuillez resaiyer")
+            )
+        }catch (error) {
+            setErrorMessage("Impossible de se connecter au serveur verifier votre connexion");
+        } finally { 
+            setIsLoading(false);
+        }
     }
     return (
-        <div className="h-screen absolute inset-0 flex justify-center items-center bg-black bg-opacity-35">
-            <div className="bg-white px-4 font-Roboto py-2 shadow-lg rounded-lg w-11/12 md:w-7/12 lg:w-4/12">
-                <div className="mb-4 flex justify-center">
+        <div className="h-screen absolute inset-0 flex justify-center items-center bg-black bg-opacity-55">
+            <div className="bg-white px-4 font-Roboto py-2 rounded-lg w-11/12 md:w-7/12 lg:w-4/12">
+                <div className="mb-4 flex justify-center items-center">
                     <h1 className="text-2xl">Ajouter Les Frais</h1>
+                    
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    {errorMessage &&  (
+                        <p className="text-red-500 text-center">{errorMessage}</p>
+                    )}
                     <div className=''>
                         {/* item input */}
                         <div className="mb-2 ">
@@ -45,6 +87,7 @@ function AddFrais() {
                                     errors.titre ? "border-red-500 focus:outline-red-500" : "border-gray-300"
                                 }`}
                             />
+                            {errors.titre && <p className='text-red-500'> {errors.titre.message} </p>}
                         </div>
                         {/* End item */}
 
@@ -102,23 +145,46 @@ function AddFrais() {
                                 }`}
                             >
                                 <option >Choisir une promotion</option>
-                                <option value="1">7 iema</option>
-                                <option value="2">8 iema</option>
-                                <option value="3">3 iema</option>
-                                <option value="4">4 iema</option>
-                                <option value="5">5 iema</option>
-                                <option value="6">6 iema</option>
+                                <option value="7 iem">7 ieme</option>
+                                <option value="8 ieme">8 ieme</option>
+                                <option value="3 ieme">3 ieme</option>
+                                <option value="4 ieme">4 ieme</option>
+                                <option value="5 ieme">5 ieme</option>
+                                <option value="6 ieme">6 ieme</option>
                             </select>
                         </div>
                     </div>
 
-                    <div>
-                        <button 
-                            type="button"
-                            className="border w-full px-4 py-2 mt-4 rounded-lg bg-green-500 text-white text-xl"
-                        >
-                            Soumettre
-                        </button>
+                    <div className='flex  items-center gap-4'>
+                        <div className='w-1/2'>
+                            <button 
+                                type="button"
+                                onClick={onClose}
+                                className='border w-full px-4 py-2 mt-4 rounded-lg bg-red-400 text-white text-xl'
+                            >
+                                Annuler
+                            </button>
+                        </div>
+
+                        <div className='w-1/2'>
+                            <button 
+                                type="submit"
+                                disabled={isloading}
+                                className="border w-full px-4 py-2 mt-4 rounded-lg bg-green-500 text-white text-xl"
+                            >
+                                {isloading ? (
+                                    <span 
+                                        className="animate-spin inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" 
+                                        role="status" 
+                                        aria-label="loading"
+                                    >
+                                
+                                    </span>
+                                ): (
+                                    "Soumettre"
+                                )}
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

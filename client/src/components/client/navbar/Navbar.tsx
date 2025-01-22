@@ -24,14 +24,17 @@ function Navbar() {
 
     return (
         <div className="flex items-center">
-            <div className='w-1/2'>
-                {/* <h1 className='text-xl md:text-3xl'>C. S ADS</h1> */}
+            <div className='w-1/2 '>
+                {/* <h1 className='text-xl md:text-3xl'>Complexe Sconlaire ADS</h1> */}
+                
                 <input 
                     type="search" 
                     name="" 
                     id="" 
-                    className='border w-1/2 focus:outline-none px-4 py-1 rounded-lg'
+                    className="border rounded-lg py-1 px-4 focus:outline-none w-1/2"
                 />
+
+                {/* <button type="button"></button> */}
             </div>
 
             <div className='w-1/2 flex justify-end'>

@@ -1,6 +1,5 @@
+import ListHistorique from "../Historique/ListHistorique";
 import Navbar from "../navbar/Navbar";
-
-
 
 function DashboardClient() {
     
@@ -13,9 +12,8 @@ function DashboardClient() {
             <div className='py-2'>
                 <h1 className='text-2xl'>Dashboard</h1>
             </div>
-            <section className='grid lg:grid-cols-GridDash1 gap-3 '>
-                <div>
-                    
+            <section className=''>
+                <div> 
                     <div className='gap-3 grid md:grid-cols-3'>
                         <div className='bg-green-600/85 text-white px-4 py-2 rounded-xl'>
                             <div>
@@ -88,15 +86,15 @@ function DashboardClient() {
                     </div>
 
                     <div className='mt-2 text-xl md:mt-4'>
-                        <h1>Historique récent des paiements</h1>
+                        <h1>Historique récente des paiements</h1>
 
-                        <div className='border rounded-md h-52 overflow-auto mt-4 px-4 py-2'>
-                            
+                        <div className='rounded-md scrollbar-none h-52 overflow-auto mt-4'>
+                            < ListHistorique />
                         </div>
                     </div>
                 </div>
 
-                <div >
+                {/* <div >
                     <div className='grid'>
                         <div className='border rounded-lg px-2 py-2 bg-blue-950 text-white'>
                             <h1 className='text-xl'>Recente Activter</h1>
@@ -121,7 +119,7 @@ function DashboardClient() {
 
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
         </>
     )

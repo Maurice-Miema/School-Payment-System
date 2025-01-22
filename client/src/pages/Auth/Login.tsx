@@ -62,7 +62,7 @@ function Login() {
             
             <div className="bg-white px-4 font-Roboto py-2 shadow-lg rounded-lg w-11/12 md:w-7/12 lg:w-4/12">
                 <div className="mb-8 flex justify-center">
-                    <h1 className="text-2xl">Connexion</h1>
+                    <h1 className="text-2xl">Connexion </h1>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     {errorMessage &&

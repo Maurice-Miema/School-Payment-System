@@ -41,6 +41,7 @@ const ConnexionUser = async (req, res) => {
             message: "connexion réussie. ",
             token: token,
             user:{
+                id: user.id,
                 nom: user.nom,
                 postnom: user.postnom,
                 prenom: user.prenom,

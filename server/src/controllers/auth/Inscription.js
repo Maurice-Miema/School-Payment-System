@@ -56,6 +56,7 @@ const InscriptionUser = async (req, res) => {
         prenom: prenom,
         numerotel: numerotel,
         promotion: promotion,
+        role: user.role
       },
     });
   } catch (error) {
