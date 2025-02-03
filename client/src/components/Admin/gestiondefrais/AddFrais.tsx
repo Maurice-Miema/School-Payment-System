@@ -24,7 +24,7 @@ function AddFrais({onClose}: Addfrais) {
             .refine((val) => val > 0, "Le montant doit être supérieur à 0."),
         date_debut: z.string().refine((val) => !isNaN(Date.parse(val)), "La date de début est invalide."),
         date_fin: z.string().refine((val) => !isNaN(Date.parse(val)), "La date de fin est invalide."),
-        promotion: z.enum(["7 ieme", "8 ieme", "3 ieme", "4 ieme", "5 ieme", "6 ieme"]),
+        promotion: z.enum(["7eme", "8eme", "3eme", "4eme", "5eme", "6eme"]),
     })
 
     type FromData = z.infer<typeof Schemafrais>;
@@ -145,12 +145,12 @@ function AddFrais({onClose}: Addfrais) {
                                 }`}
                             >
                                 <option >Choisir une promotion</option>
-                                <option value="7 iem">7 ieme</option>
-                                <option value="8 ieme">8 ieme</option>
-                                <option value="3 ieme">3 ieme</option>
-                                <option value="4 ieme">4 ieme</option>
-                                <option value="5 ieme">5 ieme</option>
-                                <option value="6 ieme">6 ieme</option>
+                                <option value="7eme">7 ieme</option>
+                                <option value="8eme">8 ieme</option>
+                                <option value="3eme">3 ieme</option>
+                                <option value="4eme">4 ieme</option>
+                                <option value="5eme">5 ieme</option>
+                                <option value="6eme">6 ieme</option>
                             </select>
                         </div>
                     </div>

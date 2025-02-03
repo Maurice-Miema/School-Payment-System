@@ -25,7 +25,7 @@ function HomeClient() {
                             <div className="flex justify-center">
                                 {/* <IoSchoolOutline size={35} className="text-green-600" /> */}
                             </div>
-                            <h1 className="flex text-2xl md:justify-center md:text-4xl">UNILU</h1>
+                            <h1 className="flex text-2xl md:justify-center md:text-4xl">C.S TEST</h1>
                         </div>
 
                         <ul className="mt-16">

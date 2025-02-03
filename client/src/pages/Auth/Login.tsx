@@ -40,7 +40,7 @@ function Login() {
             const resultat = await reponse.json();
             if(reponse.ok){
                 const { token, user }: { token: string; user: { role: string; [key: string]: any } } = resultat;
-                localStorage.setItem("token", token);
+                localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("user", JSON.stringify(user));
                 if(user.role === "eleve"){
                     navigate("/Home");

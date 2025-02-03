@@ -1,5 +1,6 @@
 import ListHistorique from "../Historique/ListHistorique";
 import Navbar from "../navbar/Navbar";
+import Totalfrais from "./TotalFrais";
 
 function DashboardClient() {
     
@@ -21,7 +22,9 @@ function DashboardClient() {
                             </div>
 
                             <div>
-                                <h1 className='text-4xl font-semibold md:py-3'>24 000 FC</h1>
+                                <h1 className='text-4xl font-semibold md:py-3'>
+                                    < Totalfrais />
+                                </h1>
                             </div>
                             
                             <div>
