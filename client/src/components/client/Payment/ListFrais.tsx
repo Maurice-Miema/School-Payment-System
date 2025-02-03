@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 import Modal from "./Modal";
 
 type Datafrais = {
+    id: number;
     titre: string,
     montant: string,
     Date_debut: string,

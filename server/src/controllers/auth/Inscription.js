@@ -8,59 +8,59 @@ dotenv.config();
 const InscriptionUser = async (req, res) => {
   const { nom, postnom, prenom, numerotel, promotion, password } = req.body;
 
-  // validation
+  // Vérification des champs obligatoires
   if (!nom || !postnom || !prenom || !numerotel || !promotion || !password) {
-    return res.status(400).json({ message: " Tous les champs son obligatoires" });
+    return res.status(400).json({ message: "Tous les champs sont obligatoires." });
   }
 
   try {
-    // verifier si le user existe deja
-    const [rows, fields] = await db
-    .promise()
-    .query(
-      "SELECT * FROM utilisateurs WHERE nom = ? AND postnom = ? AND prenom = ?",
-      [nom, postnom, prenom]
-    );
-    
+    // Vérifier si l'utilisateur existe déjà
+    const [rows] = await db
+      .promise()
+      .query(
+        "SELECT * FROM utilisateurs WHERE nom = ? AND postnom = ? AND prenom = ?",
+        [nom, postnom, prenom]
+      );
+
     if (rows.length > 0) {
-      return res.status(400).json({ message: "L'utiliateur existe deja ." });
+      return res.status(409).json({ message: "L'utilisateur existe déjà." });
     }
 
-    // Crypter le password
+    // Hasher le mot de passe
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // enregistrer a la base de données
-    const [inserResultat] = await db
+    // Insérer dans la base de données
+    const [insertResult] = await db
       .promise()
       .query(
         "INSERT INTO utilisateurs (nom, postnom, prenom, numerotelephone, promotion, mot_de_passe) VALUES (?, ?, ?, ?, ?, ?)",
         [nom, postnom, prenom, numerotel, promotion, hashedPassword]
       );
 
-    const userId = inserResultat.insertId;
+    const userId = insertResult.insertId;
 
-    // generer le token
+    // Générer le token JWT
     const token = jwt.sign(
       { id: userId, nom, prenom }, 
       process.env.JWT_SECRET, 
-      {expiresIn: "24h",}
+      { expiresIn: "24h" }
     );
+
     // Réponse en cas de succès
     res.status(201).json({
       message: "Utilisateur inscrit avec succès.",
-      token: token,
+      token,
       user: {
         id: userId,
-        nom: nom,
-        postnom: postnom,
-        prenom: prenom,
-        numerotel: numerotel,
-        promotion: promotion,
-        role: user.role
+        nom,
+        postnom,
+        prenom,
+        numerotel,
+        promotion,
       },
     });
   } catch (error) {
-    console.error("Erreur lors de l'inscription :", error.message);
+    console.error("Erreur lors de l'inscription :", error);
     res.status(500).json({ message: "Erreur interne du serveur." });
   }
 };
