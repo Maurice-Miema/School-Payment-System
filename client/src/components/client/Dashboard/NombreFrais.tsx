@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function TotalFrais() {
+function NbreFrais() {
     const [TotalFrais, setTotalFrais] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [Isloading, setloading] = useState<boolean>(true);
@@ -15,7 +15,7 @@ function TotalFrais() {
                 const reponse = await axios.get("http://localhost:3000/api/v2/datafrias/TotalFrais",{
                     params: { promotionUser }
                 });
-                setTotalFrais(reponse.data.totalfrais);
+                setTotalFrais(reponse.data.NbreFrais);
                 setloading(false);
 
             } catch (error) {
@@ -39,13 +39,13 @@ function TotalFrais() {
                     ></span>
                 </div>
             ): error ? (
-                <p className="text-red-500"> {error} </p>
+                <p className="text-red-500"> 0 </p>
             ): (
-                <h1> {TotalFrais} FC</h1>
+                <h1> {TotalFrais} </h1>
             )}
-            
+
         </div>
     )
 }
 
-export default TotalFrais;
+export default NbreFrais;

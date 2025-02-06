@@ -1,35 +1,44 @@
 const dotenv = require("dotenv");
-const Stripe = require("stripe");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 dotenv.config();
-
-// Configuration de CinetPay
-const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 
 
 // Fonction pour créer un paiement mobile
 const createMobilePayment = async (req, res) => {
-    const { amount, currency, description, id_user, id_frais } = req.body;
-
-    if (!amount || !currency || !description || !id_user || !id_frais) {
-        return res.status(400).json({ message: "Les données sont manquantes" });
-    }
-
     try {
-        // Préparer les données de la requête
-        const stripe = new Stripe(STRIPE_SECRET_KEY)
-        const paymentData = {
-            amount : amount,
-            currency: currency,
-        };
+        const { amount, currency, description, id_user, id_frais } = req.body;
 
-        const PaymentIntent = await stripe.paymentIntents.create({paymentData})
-    
-        // Retourner une réponse JSON au client
-        return res.status(200).json({
-            message: "Le paiement a été créé avec succès",
-            cleintSecrete: PaymentIntent.client_secret
+        // Vérification des données reçues
+        if (!amount || !currency || !description || !id_user || !id_frais) {
+            return res.status(400).json({ error: "Données manquantes" });
+        }
+
+        // Création d'une session Stripe Checkout
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            line_items: [
+                {
+                    price_data: {
+                        currency: currency,
+                        product_data: {
+                            name: description,
+                        },
+                        unit_amount: amount, 
+                    },
+                    quantity: 1,
+                },
+            ],
+            mode: "payment",
+            metadata: {
+                id_user: id_user, 
+                id_frais: id_frais,
+            },
+            success_url: `http://localhost:5173/Home/StripeSuccess?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: "http://localhost:5173/Home/StripeCancel",
         });
-        
+
+        res.json({ url: session.url });
+
     } catch (error) {
         console.log("Erreur lors de la création du paiement:", error.response?.data || error.message);
         // Retourner une erreur interne du serveur

@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function TotalFrais() {
+function NbreFraisPayer() {
     const [TotalFrais, setTotalFrais] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [Isloading, setloading] = useState<boolean>(true);
 
     const GetPromotionUser = localStorage.getItem("user");
     const user = GetPromotionUser ? JSON.parse(GetPromotionUser) : null;
-    const promotionUser = user.promotion;
+    const UserId = user.id;
+    console.log("Get Id user :", UserId);
+
     useEffect(()=> {
-        const FetchPromotion = async ()=> {
+        const FetchId = async ()=> {
             try {
-                const reponse = await axios.get("http://localhost:3000/api/v2/datafrias/TotalFrais",{
-                    params: { promotionUser }
+                const reponse = await axios.get("http://localhost:3000/api/v2/datafrias/FraisPayerTotal",{
+                    params: { UserId }
                 });
-                setTotalFrais(reponse.data.totalfrais);
+                console.log("data frais :", reponse);
+                setTotalFrais(reponse.data.NumberFraisPayer);
                 setloading(false);
 
             } catch (error) {
@@ -25,7 +28,7 @@ function TotalFrais() {
                 setloading(false);
             }
         }
-        FetchPromotion();
+        FetchId();
     }, []);
 
     return (
@@ -39,13 +42,13 @@ function TotalFrais() {
                     ></span>
                 </div>
             ): error ? (
-                <p className="text-red-500"> {error} </p>
+                <p className="text-red-500"> 0 </p>
             ): (
-                <h1> {TotalFrais} FC</h1>
+                <h1> {TotalFrais} </h1>
             )}
             
         </div>
-    )
+    );
 }
 
-export default TotalFrais;
+export default NbreFraisPayer;

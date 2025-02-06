@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-import Modal from "./Modal";
+import axios from "axios";
+// import Modal from "./Modal";
 
 type Datafrais = {
     id: number;
@@ -15,17 +16,6 @@ function ListFrais() {
     const [frais, setFrais] = useState<Datafrais[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [selectedFrais, setSelectedFrais] = useState< Datafrais | null>(null); // Garde l'élément sélectionné
-    const [isModalOpen, setIsModalOpen] = useState(false); // Gère l'état du modal
-
-    const handleOpenModal = (item: Datafrais)=> {
-        setIsModalOpen(true);
-        setSelectedFrais(item);
-    }
-
-    const handleCloseModal = ()=> {
-        setSelectedFrais(null);
-        setIsModalOpen(false);
-    }
 
     useEffect(() => {
         const FetchData = async () => {
@@ -59,6 +49,40 @@ function ListFrais() {
             socket.disconnect(); 
         };
     }, []);
+
+
+    
+    // Fonction pour Checkout de Stripe
+    const handleCheckout = (item: Datafrais) => {
+        setSelectedFrais(item);
+    }
+
+    // Afficher l'ID dès qu'il change
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        if (selectedFrais) {
+            console.log(selectedFrais);
+            // Fonction asynchrone
+            const createCheckoutSession = async () => {
+                try {
+                    const montantCentimes = Math.round(parseFloat(selectedFrais.montant) * 100);
+                    const response = await axios.post("http://localhost:3000/api/v3/PaymentStripe/payment", {
+                        amount: montantCentimes, 
+                        currency: "usd",
+                        description: selectedFrais.titre,
+                        id_user: user.id,
+                        id_frais: selectedFrais.id
+                    });
+
+                    window.location.href = response.data.url; // Redirection vers Stripe Checkout
+                } catch (error) {
+                    console.error("Erreur lors de la création de la session Stripe:", error);
+                }
+            };
+
+            createCheckoutSession(); // Appel de la fonction asynchrone
+            }
+    }, [selectedFrais]);
     
     return (
         <> 
@@ -100,7 +124,7 @@ function ListFrais() {
                                             <div className="table-cell px-6 py-4 whitespace-nowrap text-end text-base font-medium">
                                                 <button 
                                                     type="button" 
-                                                    onClick={()=> handleOpenModal(item)}
+                                                    onClick={()=> handleCheckout(item)}
                                                     className="inline-flex items-center gap-x-2 text-base font-semibold rounded-lg border
                                                     disabled:opacity-50 disabled:pointer-events-none bg-green-500 px-4 py-2 text-white"
                                                 >
@@ -108,8 +132,7 @@ function ListFrais() {
                                                 </button>
                                             </div>
                                         </div>
-                                    ))}
-
+                                    ))};
                                     
                                 </div>
                             </div>
@@ -119,11 +142,11 @@ function ListFrais() {
             )}
 
             {/* //le modal de paiement  */}
-            < Modal 
+            {/* < Modal 
                 isOpen={isModalOpen}
                 onclose={handleCloseModal}
                 frais={selectedFrais}
-            />
+            /> */}
         </>
     )
 }

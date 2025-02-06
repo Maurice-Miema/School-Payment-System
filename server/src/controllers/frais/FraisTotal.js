@@ -19,9 +19,11 @@ const GetTotalFrais = async (req, res)=> {
             return res.status(404).json({ message: "Aucun frais trouvé pour cette promotion" });
         }
 
-        const totalfrais = rows.reduce((total, row) => total + parseFloat(row.montant), 0);
+        const totalfrais = rows.reduce((total, row) => total + parseFloat(row.montant), 0); // Le total de frias trouver
+        const NbreFrais = rows.length;
+        
 
-        return res.status(200).json({ totalfrais });
+        return res.status(200).json({ totalfrais, NbreFrais });
     } catch (error) {
         console.error("Erreur lors de la récupération des frais :", error);
         return res.status(500).json({ message: "Erreur serveur"});

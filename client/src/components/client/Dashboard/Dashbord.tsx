@@ -1,5 +1,9 @@
 import ListHistorique from "../Historique/ListHistorique";
 import Navbar from "../navbar/Navbar";
+import AccoutPayer from "./AccoutPayer";
+import AccoutRestant from "./AccoutRestant";
+import NbreFraisPayer from "./NbreFraisPayer";
+import NbreFrais from "./NombreFrais";
 import Totalfrais from "./TotalFrais";
 
 function DashboardClient() {
@@ -38,7 +42,9 @@ function DashboardClient() {
                             </div>
 
                             <div>
-                                <h1 className='text-4xl font-semibold md:py-2'>4 000 Fc</h1>
+                                <h1 className='text-4xl font-semibold md:py-2'>
+                                    < AccoutPayer />
+                                </h1>
                             </div>
                             
                             <div>
@@ -52,7 +58,9 @@ function DashboardClient() {
                             </div>
 
                             <div>
-                                <h1 className='text-4xl font-semibold md:py-2'>20 000 FC</h1>
+                                <h1 className='text-4xl font-semibold md:py-2'>
+                                    < AccoutRestant />
+                                </h1>
                             </div>
                             
                             <div>
@@ -67,7 +75,9 @@ function DashboardClient() {
                             <h1 className="text-xl py-2">Nombre des frais a payer</h1>
 
                             <div className="py-2 px-4">
-                                <h1 className="text-5xl">05 </h1>
+                                <h1 className="text-5xl">
+                                    < NbreFrais /> 
+                                </h1>
                             </div>
 
                             <div className="py-2">
@@ -79,7 +89,9 @@ function DashboardClient() {
                             <h1 className="text-xl py-2">Nombre des frais payer</h1>
 
                             <div className="py-2 px-4">
-                                <h1 className="text-5xl">02 </h1>
+                                <h1 className="text-5xl">
+                                    < NbreFraisPayer />
+                                </h1>
                             </div>
 
                             <div className="py-2">

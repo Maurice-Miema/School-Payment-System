@@ -5,6 +5,9 @@ import PaymentClientFrais from "../components/client/Payment/PaymentClientFrais"
 import Notification from "../components/client/Notification/Notification";
 import Historique from "../components/client/Historique/Historique";
 import Parametre from "../components/client/Parametre/Parametre";
+// pour Stripe
+import StripeSuccess from "../pages/client/StripeSuccess";
+import StripeCancel from "../pages/client/StripeCancel";
 
 function ClientRoutes() {
   return (
@@ -17,9 +20,11 @@ function ClientRoutes() {
           <Route path="/Historique" element={ < Historique />} />
           <Route path="/Parametre" element={ < Parametre /> } />
         </Route>
-    </Routes>
+        < Route path="/StripeSuccess" element={ < StripeSuccess /> } />
+        < Route path="/StripeCancel" element={ < StripeCancel />} />
+      </Routes>
     </>
-  );
+  )
 
 }
 
