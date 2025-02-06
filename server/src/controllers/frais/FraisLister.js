@@ -12,7 +12,7 @@ const listerfrais = (req, res) => {
             return res.status(500).json({ message: "Erreur lors de la récupération des frais" });
         }
 
-        res.status(200).json(resultat); 
+        res.status(200).json(resultat);
     });
 };
 

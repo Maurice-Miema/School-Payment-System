@@ -24,7 +24,7 @@ const CheckoutForm = ({ frais }: Props) => {
             return;
         }
 
-        const response = await fetch("http://localhost:3000/api/v3/PaymentStripe/payment", {
+        const response = await fetch("ht", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
