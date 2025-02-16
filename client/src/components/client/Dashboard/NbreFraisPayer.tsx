@@ -14,7 +14,7 @@ function NbreFraisPayer() {
     useEffect(()=> {
         const FetchId = async ()=> {
             try {
-                const reponse = await axios.get("http://localhost:3000/api/v2/datafrias/FraisPayerTotal",{
+                const reponse = await axios.get("https://school-payment-system.onrender.com/api/v2/datafrias/FraisPayerTotal",{
                     params: { UserId }
                 });
                 console.log("data frais :", reponse);

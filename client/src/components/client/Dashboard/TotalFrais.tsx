@@ -12,7 +12,7 @@ function TotalFrais() {
     useEffect(()=> {
         const FetchPromotion = async ()=> {
             try {
-                const reponse = await axios.get("http://localhost:3000/api/v2/datafrias/TotalFrais",{
+                const reponse = await axios.get("https://school-payment-system.onrender.com/api/v2/datafrias/TotalFrais",{
                     params: { promotionUser }
                 });
                 setTotalFrais(reponse.data.totalfrais);

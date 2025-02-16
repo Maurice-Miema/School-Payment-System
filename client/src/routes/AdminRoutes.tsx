@@ -4,7 +4,7 @@ import DashbordAdmin from "../components/Admin/dashboard/DashboardAdmin"
 import GestionEtudiant from "../components/Admin/gestEtudiant/GestionEtudiant";
 import GestiondeFrais from "../components/Admin/gestiondefrais/GestiondeFrais";
 import GestionPayment from "../components/Admin/gestPayment/GestionPayment";
-import Notification from "../components/Admin/notification/Notification";
+// import Notification from "../components/Admin/notification/Notification";
 import Rapport from "../components/Admin/rapport/Rapport";
 
 const AdminRoutes = () => {
@@ -16,7 +16,6 @@ const AdminRoutes = () => {
               <Route path="/Gestionetudiant" element={ < GestionEtudiant /> } />
               <Route path="/Gestionpayment" element={ <GestionPayment />} />
               <Route path="/Gestiondefrais" element={ < GestiondeFrais />} />
-              <Route path="/Notification" element={ <Notification />} />
               <Route path="/Rapport" element={ <Rapport />} />
             </Route>
         </Routes>

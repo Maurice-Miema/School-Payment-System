@@ -2,10 +2,14 @@ import { HiOutlineChevronDown } from 'react-icons/hi'
 import { IoNotificationsOutline } from 'react-icons/io5'
 
 function Navbar() {
+    const Getuser = localStorage.getItem("user");
+    const User = Getuser ? JSON.parse(Getuser) : "";
+    console.log("Admin User :", User);
+
     return (
         <div className='flex items-center'> 
             <div className='w-1/2'>
-                <h1 className='text-xl md:text-3xl'>Name Admin</h1>
+                <h1 className='text-xl md:text-3xl'> {User.prenom} Admin</h1>
             </div>
 
             <div className='w-1/2 flex justify-end'>
@@ -21,7 +25,7 @@ function Navbar() {
                         />
                     </div>
                     <div>
-                        <h1 className='hidden md:block'>Maurice Miema</h1>
+                        <h1 className='hidden md:block'>{User.nom} {User.prenom}</h1>
                         < HiOutlineChevronDown 
                             size={20}
                             className='md:hidden block' 

@@ -15,7 +15,7 @@ function AccoutRestant() {
     useEffect(()=> {
         const FetchId = async ()=> {
             try {
-                const reponse = await axios.get("http://localhost:3000/api/v2/datafrias/AccoutRestant",{
+                const reponse = await axios.get("https://school-payment-system.onrender.com/api/v2/datafrias/AccoutRestant",{
                     params: { UserId, PromotionUser }
                 });
                 console.log("data frais :", reponse);

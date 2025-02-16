@@ -30,7 +30,7 @@ function Login() {
         setIsLoading(true);
         setErrorMessage(null);
         try {
-            const reponse = await fetch("http://localhost:3000/api/v1/user/connexion", {
+            const reponse = await fetch("https://school-payment-system.onrender.com/api/v1/user/connexion", {
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json"
