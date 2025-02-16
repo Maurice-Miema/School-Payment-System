@@ -4,10 +4,11 @@ import { Link, Outlet, useLocation } from "react-router";
 import { IoSchoolOutline } from "react-icons/io5";
 import { RxDashboard } from "react-icons/rx";
 import { MdPayment } from "react-icons/md";
-import { IoNotificationsOutline } from "react-icons/io5";
+// import { IoNotificationsOutline } from "react-icons/io5";
 import { GrGroup } from "react-icons/gr";
 import { CiMoneyCheck1 } from "react-icons/ci";
 import { TbDeviceAnalytics } from "react-icons/tb";
+import Loginout from "../../components/Admin/loginOut/Loginout";
 
 
 function HomeAdmin() {    
@@ -41,12 +42,11 @@ function HomeAdmin() {
 
                             <li>
                                 <Link
-                                    to="/Admin/Gestionetudiant"
-                                    className={`text-gray-600 text-left py-2 mb-2 flex items-center w-full text-xl ${IsActive("/Admin/Gestionetudiant")}`}
+                                    to="/Admin/Gestiondefrais"
+                                    className={`text-gray-600 py-2 mb-2 flex items-center w-full text-xl ${IsActive("/Admin/Gestiondefrais")}`}
                                 >
-                                    < GrGroup size={25} className="mx-2"/>
-                                    Gestion des étudiants
-
+                                    < CiMoneyCheck1 size={25} className="mx-2"/>
+                                    Gestion des frais
                                 </Link>
                             </li>
 
@@ -63,6 +63,17 @@ function HomeAdmin() {
 
                             <li>
                                 <Link
+                                    to="/Admin/Gestionetudiant"
+                                    className={`text-gray-600 text-left py-2 mb-2 flex items-center w-full text-xl ${IsActive("/Admin/Gestionetudiant")}`}
+                                >
+                                    < GrGroup size={25} className="mx-2"/>
+                                    Gestion des étudiants
+
+                                </Link>
+                            </li>
+
+                            {/* <li>
+                                <Link
                                     to="/Admin/Notification"
                                     className={`text-gray-600 text-left py-2 mb-2 flex items-center w-full text-xl ${IsActive("/Admin/Notification")}`}
                                 >
@@ -70,17 +81,7 @@ function HomeAdmin() {
                                     Notifications et rappels
 
                                 </Link>
-                            </li>   
-
-                            <li>
-                                <Link
-                                    to="/Admin/Gestiondefrais"
-                                    className={`text-gray-600 py-2 mb-2 flex items-center w-full text-xl ${IsActive("/Admin/Gestiondefrais")}`}
-                                >
-                                    < CiMoneyCheck1 size={25} className="mx-2"/>
-                                    Gestion des frais
-                                </Link>
-                            </li>
+                            </li>    */}
 
                             <li>
                                 <Link
@@ -92,7 +93,13 @@ function HomeAdmin() {
                                 </Link>
                             </li>
                         </ul>
+
+                        <div>
+                            < Loginout />
+                        </div>
+
                     </div>
+
                 </section>
 
                 <section className="bg-white h-screen px-4 md:overflow-auto md:px-8 py-2 overflow-auto">

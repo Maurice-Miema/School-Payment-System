@@ -43,7 +43,7 @@ function AddFrais({onClose}: Addfrais) {
         console.log("data :", data);
 
         try {
-            const reponse = await fetch("http://localhost:3000/api/v2/datafrias/datafrais", {
+            const reponse = await fetch("https://school-payment-system.onrender.com/api/v2/datafrias/datafrais", {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"
@@ -52,7 +52,7 @@ function AddFrais({onClose}: Addfrais) {
             })
             const resultat = await reponse.json();
             if(reponse.ok){
-                alert("bonjour");
+                onClose();
             }else(
                 setErrorMessage("Erreur d'envois Veuillez resaiyer")
             )
@@ -63,8 +63,8 @@ function AddFrais({onClose}: Addfrais) {
         }
     }
     return (
-        <div className="h-screen absolute inset-0 flex justify-center items-center bg-black bg-opacity-55">
-            <div className="bg-white px-4 font-Roboto py-2 rounded-lg w-11/12 md:w-7/12 lg:w-4/12">
+        <div className="h-screen absolute inset-0 flex justify-center items-center bg-black bg-opacity-55 backdrop-blur-md transition-all duration-500 ease-in-out">
+            <div className="bg-white px-4 transition duration-1500 ease-in-out font-Roboto py-2 rounded-lg w-11/12 md:w-7/12 lg:w-4/12">
                 <div className="mb-4 flex justify-center items-center">
                     <h1 className="text-2xl">Ajouter Les Frais</h1>
                     

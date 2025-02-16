@@ -30,7 +30,7 @@ const createMobilePayment = async (req, res) => {
             ],
             mode: "payment",
             metadata: {
-                id_user: id_user, 
+                id_user: id_user,
                 id_frais: id_frais,
             },
             success_url: `http://localhost:5173/Home/StripeSuccess?session_id={CHECKOUT_SESSION_ID}`,

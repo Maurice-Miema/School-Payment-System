@@ -26,7 +26,7 @@ function Loginout() {
     }
     return (
         <>
-            <div className="mt-64">
+            <div className="mt-40">
                 <button 
                     type="button"
                     onClick={handleOpen}
@@ -68,4 +68,4 @@ function Loginout() {
     )
 }
 
-export default Loginout
+export default Loginout;

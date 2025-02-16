@@ -20,7 +20,7 @@ function ListFrais() {
     useEffect(() => {
         const FetchData = async () => {
             try {
-                const reponse = await fetch("http://localhost:3000/api/v2/datafrias/listerfrais");
+                const reponse = await fetch("https://school-payment-system.onrender.com/api/v2/datafrias/listerfrais");
                 if (!reponse.ok) {
                     throw new Error("Problème de connexion à l'API");
                 }
@@ -33,7 +33,7 @@ function ListFrais() {
         };
     
         // Initialiser Socket.IO
-        const socket = io("http://localhost:3000"); 
+        const socket = io("https://school-payment-system.onrender.com"); 
     
         // Écouter les mises à jour en temps réel
         socket.on("fraisMisAJour", (nouveauxFrais: Datafrais[]) => {
@@ -66,7 +66,7 @@ function ListFrais() {
             const createCheckoutSession = async () => {
                 try {
                     const montantCentimes = Math.round(parseFloat(selectedFrais.montant) * 100);
-                    const response = await axios.post("http://localhost:3000/api/v3/PaymentStripe/payment", {
+                    const response = await axios.post("https://school-payment-system.onrender.com/api/v3/PaymentStripe/payment", {
                         amount: montantCentimes, 
                         currency: "usd",
                         description: selectedFrais.titre,
