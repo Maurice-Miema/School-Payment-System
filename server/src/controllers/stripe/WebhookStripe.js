@@ -2,13 +2,14 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const db = require("../../config/Database"); 
 
 const WebhookStripe = async (req, res) => {
-    const sig = req.headers["stripe-signature"];
+    // const sig = req.headers["stripe-signature"];
     let event;
 
     try {
-        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+        // event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+        event = req.body;
     } catch (err) {
-        console.error("❌ Webhook signature verification failed:", err.message);
+        console.error("Webhook signature verification failed:", err.message);
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
