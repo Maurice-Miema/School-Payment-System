@@ -11,6 +11,15 @@ const server = http.createServer(app)
 initializeSocket(server);
 dotenv.config();
 
+const PORT = process.env.PORT;
+
+// les fichiers importer pour les routes
+const UserRoute = require("./routes/UserRoutes");
+const FraisRoutes = require("./routes/FraisRoutes");
+const StripeRoutes = require("./routes/StripeRoutes");
+
+app.use("/api/v3/PaymentStripe/stripewebhook", express.raw({ type: "application/json" }));
+
 // Middleware globaux
 app.use(express.json());
 app.use(cors());
@@ -22,12 +31,7 @@ app.use((req, res, next) => {
   res.setHeader("Surrogate-Control", "no-store");
   next();
 });
-const PORT = process.env.PORT || 3000;
 
-// les fichiers importer pour les routes
-const UserRoute = require("./routes/UserRoutes");
-const FraisRoutes = require("./routes/FraisRoutes");
-const StripeRoutes = require("./routes/StripeRoutes");
 
 // LES ROUTES
 app.use("/api/v1/user", UserRoute); // Version1 api User
