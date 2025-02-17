@@ -37,6 +37,8 @@ const createMobilePayment = async (req, res) => {
             cancel_url: "http://localhost:5173/Home/StripeCancel",
         });
 
+        console.log("Session Stripe créée :", session);
+
         res.json({ url: session.url });
 
     } catch (error) {

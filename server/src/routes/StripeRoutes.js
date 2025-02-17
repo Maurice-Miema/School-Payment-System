@@ -5,6 +5,6 @@ const WebhookStripe = require("../controllers/stripe/WebhookStripe");
 
 
 router.post("/payment", createMobilePayment);
-router.post("/stripe", WebhookStripe);
+router.post("/stripe", express.raw({ type: "application/json" }), WebhookStripe);
 
 module.exports = router;
