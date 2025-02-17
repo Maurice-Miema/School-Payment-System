@@ -35,7 +35,7 @@ const WebhookStripe = async (req, res) => {
             const [result] = await db
                 .promise()
                 .query(
-                    "INSERT INTO paiements(utilisateur_id, frais_id, montant_paye, methode, status) VALUES( ?, ?, ?, ?, ?)",
+                    "INSERT INTO paiements(utilisateur_id, frais_id, montant_paye, methode, statut) VALUES( ?, ?, ?, ?, ?)",
                     [id_user, id_frais, amount, payment_method, statut]
                 );
 
