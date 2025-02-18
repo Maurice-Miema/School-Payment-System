@@ -10,7 +10,7 @@ const AccoutRestant = require("../controllers/frais/AccoutRestant");
 const HistoriqueFrais = require("../controllers/frais/HistoriqueFrais");
 const FraisSoumis = require("../controllers/frais/FraisSoumis");
 const GestionPaiement = require("../controllers/frais/Gestion_Payment/GestionPaiement");
-const GestionEleves = require("../controllers/frais/Gestion_Payment/GestionEleve");
+const gestionEleves = require("../controllers/frais/Gestion_Payment/GestionEleve");
 
 router.post("/datafrais", FraisScolaire);
 router.get("/listerfrais", listerfrais);
@@ -20,5 +20,5 @@ router.get("/AccoutRestant", AccoutRestant);
 router.get("/HistoriqueFrais", HistoriqueFrais);
 router.get("/FraisSoumisAdmin", FraisSoumis);
 router.get("/GestionPayment", GestionPaiement);
-router.get("/GestionEleves", GestionEleves);
+router.get("/gestionEleves", gestionEleves);
 module.exports = router;
