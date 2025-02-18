@@ -11,7 +11,7 @@ const server = http.createServer(app)
 initializeSocket(server);
 dotenv.config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 // les fichiers importer pour les routes
 const UserRoute = require("./routes/UserRoutes");

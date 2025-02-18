@@ -24,7 +24,7 @@ const WebhookStripe = async (req, res) => {
         const id_frais = session.metadata.id_frais;
         const amount = session.amount_total / 100; 
         const payment_method = session.payment_method_types[0]; 
-        const statut = "Payer";
+        const statut = "complet";
 
         // Vérifier si une donnée est manquante
         if (!id_user || !id_frais || !amount || !payment_method) {
