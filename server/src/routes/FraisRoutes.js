@@ -17,8 +17,8 @@ router.get("/listerfrais", listerfrais);
 router.get("/TotalFrais", GetTotalFrais);
 router.get("/FraisPayerTotal", AccoutPayer);
 router.get("/AccoutRestant", AccoutRestant);
-router.get("/HistoriqueFrais", HistoriqueFrais);
-router.get("/FraisSoumisAdmin", FraisSoumis);
+router.get("/HistoriqueFrais", HistoriqueFrais); // pour recuperer l'historique de frais payer cote eleve
+router.get("/FraisSoumisAdmin", FraisSoumis); // pour recuperer frais soumis cote admin 
 router.get("/GestionPayment", GestionPaiement);
 router.get("/gestionEleves", gestionEleves);
 

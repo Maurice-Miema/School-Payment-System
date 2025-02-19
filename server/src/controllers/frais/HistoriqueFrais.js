@@ -4,7 +4,7 @@ const HistoriqueFrais = async (req, res)=> {
     
 
     try {
-        const { UserId } = req.body;
+        const { UserId } = req.query;
 
         if(!UserId){
             return res.status(400).json({message: "Les donnees sont Manquantes "})
