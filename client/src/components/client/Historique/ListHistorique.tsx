@@ -1,6 +1,25 @@
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function ListHistorique() {
+
+    const GetUserId = localStorage.getItem("user");
+    const user = GetUserId ? JSON.parse(GetUserId) : null;
+    const UserId = user.id
+    useEffect(()=>{
+        const GetHistorique = async ()=> {
+            try {
+                const reponse = await axios.get("https://school-payment-system.onrender.com/api/v2/datafrias/HistoriqueFrais", {
+                    params : { UserId }
+                });
+                console.log("Data Frais Historique", reponse);
+            } catch (error) {
+                console.error("Erruer", error);
+            }
+        }
+
+        GetHistorique();
+    }, [])
     return (
         <div className="overflow-auto">
             <div className=" inline-block align-middle">
