@@ -9,6 +9,7 @@ const GestionPaiement = async (req, res) => {
                     u.prenom, 
                     u.promotion, 
                     f.titre AS frais_titre, 
+                    p.id,
                     p.montant_paye
                 FROM paiements p
                 JOIN utilisateurs u ON p.utilisateur_id = u.id
