@@ -11,7 +11,7 @@ const HistoriqueFrais = async (req, res)=> {
         }
 
         const [rows] = await db.promise()
-        .query("SELECT p.montant_paye, p.date_paiement, p.methode, p.statut, f.titre FROM paiements p INNER JOIN frais_scolaires f ON p.frais_id = f.id WHERE p.utilisateur_id = ? ",
+        .query("SELECT p.id p.montant_paye, p.date_paiement, p.methode, p.statut, f.titre FROM paiements p INNER JOIN frais_scolaires f ON p.frais_id = f.id WHERE p.utilisateur_id = ? ",
             [UserId]
         );
 
