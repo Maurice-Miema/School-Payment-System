@@ -20,6 +20,7 @@ function App() {
           <Route path="/Admin/*" element={ <AdminRoutes />} />
         </Routes>
       </main>
+
     </>
   )
 }

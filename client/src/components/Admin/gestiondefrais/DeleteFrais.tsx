@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MdDelete } from "react-icons/md"; // l iconne de delete 
 
 type DataFriasAdmin = {
@@ -13,25 +14,28 @@ type DataFriasAdmin = {
 interface DeleteFrais {
     onCloseMenuDelete: () => void;
     selectedFrais: DataFriasAdmin | null;
+    messDelete: () => void;
 }
 
-function DeleteFrais({ onCloseMenuDelete, selectedFrais }: DeleteFrais) {
+function DeleteFrais({ onCloseMenuDelete, selectedFrais, messDelete }: DeleteFrais) {
 
+    const [ErrorMessage, setErrorMessage] = useState<string | null>(null);
     if(!selectedFrais) return null;
 
     const DeleteFrais = async () => {
-        const data = selectedFrais.id;
+        const FraisId = selectedFrais.id;
         try {
             const response = await fetch("https://school-payment-system.onrender.com/api/v2/datafrias/DeleteFrais", {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
+                body: JSON.stringify({FraisId}),
             });
 
             if (response.ok) {
                 onCloseMenuDelete();
+                messDelete();
             } else {
-                
+                setErrorMessage("Une Erreur se Produit");
             }
         } catch (error) {
             console.error("Erreur :", error);
@@ -45,6 +49,7 @@ function DeleteFrais({ onCloseMenuDelete, selectedFrais }: DeleteFrais) {
                     < MdDelete size={100} color='#dc2626' />
                 </div>
                 <div className="mb-4 flex justify-center items-center">
+                    {ErrorMessage && <p className="text-red-500 text-center"> { ErrorMessage } </p> }
                     <h1 className="text-2xl">Supprimer Le Frais </h1>
                 </div>
 
