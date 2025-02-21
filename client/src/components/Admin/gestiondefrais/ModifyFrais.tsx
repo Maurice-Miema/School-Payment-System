@@ -71,7 +71,7 @@ function ModifyFraisScolaire({ onClose, selectedFrais, messSucces }: ModifyFrais
         console.log("Data envoyée :", data);
 
         try {
-            const response = await fetch("http://localhost:3000/api/v2/datafrias/PutFrais", {
+            const response = await fetch("https://school-payment-system.onrender.com/api/v2/datafrias/PutFrais", {
                 method: "PUT", 
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
