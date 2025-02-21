@@ -6,9 +6,10 @@ import { useState } from 'react';
 
 interface Addfrais{
     onClose: () => void;
+    MessSucces: () => void;
 }
 
-function AddFrais({onClose}: Addfrais) {
+function AddFrais({onClose, MessSucces}: Addfrais) {
     const [isloading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState< string | null>(null);
 
@@ -53,6 +54,7 @@ function AddFrais({onClose}: Addfrais) {
             const resultat = await reponse.json();
             if(reponse.ok){
                 onClose();
+                MessSucces();
             }else(
                 setErrorMessage("Erreur d'envois Veuillez resaiyer")
             )
