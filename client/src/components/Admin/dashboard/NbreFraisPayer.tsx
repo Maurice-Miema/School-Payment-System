@@ -1,21 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function NbreFrais() {
+function NbreFraisPayer() {
     const [TotalFrais, setTotalFrais] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [Isloading, setloading] = useState<boolean>(true);
 
-    const GetPromotionUser = localStorage.getItem("user");
-    const user = GetPromotionUser ? JSON.parse(GetPromotionUser) : null;
-    const promotionUser = user.promotion;
     useEffect(()=> {
-        const FetchPromotion = async ()=> {
+        const FetchId = async ()=> {
             try {
-                const reponse = await axios.get("https://school-payment-system.onrender.com/api/v2/datafrias/TotalFrais",{
-                    params: { promotionUser }
-                });
-                setTotalFrais(reponse.data.NbreFrais);
+                const reponse = await axios.get("https://school-payment-system.onrender.com/api/v2/datafrias/MontantPayerAdmin");
+                console.log("data frais :", reponse);
+                setTotalFrais(reponse.data.NbreFraisPayer);
                 setloading(false);
 
             } catch (error) {
@@ -25,7 +21,7 @@ function NbreFrais() {
                 setloading(false);
             }
         }
-        FetchPromotion();
+        FetchId();
     }, []);
 
     return (
@@ -33,7 +29,7 @@ function NbreFrais() {
             {Isloading ? (
                 <div className="flex justify-center h-10 items-center">
                     <span 
-                        className="animate-spin inline-block size-4 border-[3px] border-current border-t-transparent text-black rounded-full" 
+                        className="animate-spin inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" 
                         role="status" 
                         aria-label="loading"
                     ></span>
@@ -48,4 +44,4 @@ function NbreFrais() {
     )
 }
 
-export default NbreFrais;
+export default NbreFraisPayer;

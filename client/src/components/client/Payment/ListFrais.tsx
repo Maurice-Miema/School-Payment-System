@@ -132,7 +132,7 @@ function ListFrais() {
                                                 </button>
                                             </div>
                                         </div>
-                                    ))};
+                                    ))}
                                     
                                 </div>
                             </div>

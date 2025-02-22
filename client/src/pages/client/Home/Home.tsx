@@ -64,7 +64,7 @@ function HomeClient() {
                             </li> 
 
                             
-                            <li>
+                            {/* <li>
                                 <Link 
                                     type="button"
                                     to="/Home/Parametre"
@@ -73,7 +73,7 @@ function HomeClient() {
                                     < IoSettingsOutline size={25} className="mx-2"/>
                                     Parametre
                                 </Link>
-                            </li>
+                            </li> */}
 
                         </ul>
 

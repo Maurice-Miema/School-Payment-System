@@ -26,7 +26,7 @@ function Loginout() {
     }
     return (
         <>
-            <div className="mt-64">
+            <div className="mt-[46vh]">
                 <button 
                     type="button"
                     onClick={handleOpen}
