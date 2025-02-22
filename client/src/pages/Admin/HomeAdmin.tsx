@@ -83,7 +83,7 @@ function HomeAdmin() {
                                 </Link>
                             </li>    */}
 
-                            <li>
+                            {/* <li>
                                 <Link
                                     to="/Admin/Rapport"
                                     className={`text-gray-600 py-2 mb-2 flex items-center w-full text-xl ${IsActive("/Admin/Rapport")}`}
@@ -91,7 +91,7 @@ function HomeAdmin() {
                                     < TbDeviceAnalytics size={25} className="mx-2"/>
                                     Rapports et analyses
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
 
                         <div>

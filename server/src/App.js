@@ -21,7 +21,13 @@ const StripeRoutes = require("./routes/StripeRoutes");
 app.use("/api/v3/PaymentStripe/stripewebhook", express.raw({ type: "application/json" }));
 
 // Middleware globaux
-app.use(express.json());
+app.use((req, res, next) => {
+  if (req.method === "POST" || req.method === "PUT") {
+      bodyParser.json()(req, res, next);
+  } else {
+      next();
+  }
+});
 app.use(cors());
 app.use(morgan("dev"));
 app.use((req, res, next) => {

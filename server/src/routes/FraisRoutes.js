@@ -11,6 +11,9 @@ const GestionPaiement = require("../controllers/frais/Gestion_Payment/GestionPai
 const gestionEleves = require("../controllers/frais/Gestion_Payment/GestionEleve");
 const DeleteFrais = require("../controllers/frais/DeleteFrais");
 const UpdateFrais = require("../controllers/frais/UpdateFrais");
+const TotalFraisAdmin = require("../controllers/frais/TotalFraisAdmin/TotalFrais");
+const MontantPayerAdmin = require("../controllers/frais/TotalFraisAdmin/MontantPayer");
+const MontantRestantAdmin = require("../controllers/frais/TotalFraisAdmin/MontantRestant");
 
 router.post("/datafrais", FraisScolaire);
 router.get("/listerfrais", listerfrais);
@@ -23,5 +26,8 @@ router.get("/GestionPayment", GestionPaiement); // pour recuperer tout le paymen
 router.get("/gestionEleves", gestionEleves); // pour recuperer tout les eleve inscrit
 router.delete("/DeleteFrais", DeleteFrais); // pour supprimer le frais de la base de donnee !!
 router.put("/PutFrais", UpdateFrais); // pour mettre a jour le frais !
+router.get("/TotalFraisdmin", TotalFraisAdmin);
+router.get("/MontantPayerAdmin", MontantPayerAdmin);
+router.get("/MontantRestantAdmin", MontantRestantAdmin);
 
 module.exports = router;

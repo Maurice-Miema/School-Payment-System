@@ -1,4 +1,9 @@
 import Navbar from "../navbar/Navbar";
+import MontantPayerAdmin from "./MontantPayer";
+import MontantRestant from "./MontantRestant";
+import NbreFraisSoumis from "./NbreFrais";
+import NbreFraisPayer from "./NbreFraisPayer";
+import TotalFraisAdmin from "./TotalFrais";
 
 export default function DashbordAdmin() {
     return (
@@ -6,7 +11,7 @@ export default function DashbordAdmin() {
             < Navbar />
             <hr />
 
-            <section className='grid md:grid-cols-GridDash1 gap-3 mt-5'>
+            <section className='gap-3 mt-5'>
                 <div>
                     <div className='gap-3 grid md:grid-cols-3'>
                         <div className='bg-green-700 text-white px-4 py-2 rounded-xl'>
@@ -14,8 +19,8 @@ export default function DashbordAdmin() {
                                 <h1 className='text-lg font-semibold'>Montant Total</h1>
                             </div>
 
-                            <div>
-                                <h1 className='text-4xl font-semibold md:py-2'>24</h1>
+                            <div className="text-4xl font-semibold md:py-2">
+                                < TotalFraisAdmin />
                             </div>
                             
                             <div>
@@ -28,8 +33,8 @@ export default function DashbordAdmin() {
                                 <h1 className='text-lg font-semibold'>Montant Payer</h1>
                             </div>
 
-                            <div>
-                                <h1 className='text-4xl font-semibold md:py-2'>24</h1>
+                            <div className="text-4xl font-semibold md:py-2">
+                                < MontantPayerAdmin />
                             </div>
                             
                             <div>
@@ -42,8 +47,8 @@ export default function DashbordAdmin() {
                                 <h1 className='text-lg font-semibold'>Montant Restant</h1>
                             </div>
 
-                            <div>
-                                <h1 className='text-4xl font-semibold md:py-2'>24</h1>
+                            <div className="text-4xl font-semibold md:py-2">
+                                < MontantRestant />
                             </div>
                             
                             <div>
@@ -52,12 +57,34 @@ export default function DashbordAdmin() {
                         </div>
                     </div>
 
-                    <div className='mt-2 text-xl md:mt-4'>
-                        {/*  */}
+                    <div className="grid md:grid-cols-2 gap-3 mt-2">
+                        <div className="border px-2 rounded-lg">
+                            <h1 className="text-xl py-2">Nombre des Frais Soumis </h1>
+
+                            <div className="text-4xl font-semibold md:py-2" >
+                                < NbreFraisSoumis />
+                            </div>
+
+                            <div className="py-2">
+                                <h1 className="">Frais a Payer</h1>
+                            </div>
+                        </div>
+                        
+                        <div className="border px-2 rounded-lg">
+                            <h1 className="text-xl py-2">Nombre des frais payer</h1>
+
+                            <div className="text-4xl font-semibold md:py-2">
+                                < NbreFraisPayer />
+                            </div>
+
+                            <div className="py-2">
+                                <h1>Frais a Payer</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className=''>
+                {/* <div className=''>
                     <div className='grid'>
                         <div className='border rounded-lg px-2 py-2 bg-blue-950 text-white'>
                             <h1 className='text-xl'>Recente Activter</h1>
@@ -82,7 +109,7 @@ export default function DashbordAdmin() {
 
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
         </>
     )
