@@ -41,7 +41,7 @@ function Register() {
         setErrorMessage(null);
         console.log("data :", data);
         try {
-            const reponse = await fetch("http://localhost:3000/api/v1/user/inscription", {
+            const reponse = await fetch("https://school-payment-system.onrender.com/api/v1/user/inscription", {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"
@@ -55,7 +55,7 @@ function Register() {
                 localStorage.setItem("user", JSON.stringify(user));
                 navigate("/Home");
             } else {
-                setErrorMessage("Erreur BOOTCAM Veuillez ajouter la lettre P a la fin");
+                setErrorMessage("Erreur se Produit !");
             }
         } catch (error) {
             setErrorMessage("Impossible de se connecter au serveur verifier votre connexion");
